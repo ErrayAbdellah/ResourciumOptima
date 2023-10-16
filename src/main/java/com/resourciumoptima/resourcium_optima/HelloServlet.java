@@ -31,7 +31,9 @@ public class HelloServlet extends HttpServlet {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
-            Departement department = new Departement(nom, description);
+            Departement department = new Departement();
+            department.setNom(nom);
+            department.setDescription(description);
 
             entityManager.getTransaction().begin();
             entityManager.persist(department);

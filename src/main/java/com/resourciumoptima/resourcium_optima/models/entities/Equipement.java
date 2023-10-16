@@ -1,10 +1,16 @@
 package com.resourciumoptima.resourcium_optima.models.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Equipement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
