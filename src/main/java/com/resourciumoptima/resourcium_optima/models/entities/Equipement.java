@@ -1,5 +1,6 @@
 package com.resourciumoptima.resourcium_optima.models.entities;
 
+import com.resourciumoptima.resourcium_optima.enums.Etat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,12 @@ import java.util.Date;
 public class Equipement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    private String nom;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "type")
     private String type;
 
     @Temporal(TemporalType.DATE)
@@ -27,9 +31,10 @@ public class Equipement {
     @Column(name = "date_maintenance")
     private Date dateMaintenance;
 
-    private String etat;
+    @Column(name = "etat")
+    private Etat etat;
 
     @ManyToOne
-    @JoinColumn(name = "departement_id")
-    private Departement departement;
+    @JoinColumn(name = "USER_ID")
+    private Reservation reservation;
 }

@@ -14,8 +14,9 @@ import java.util.Date;
 public class Tache {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
 
     @Column(name = "description")
@@ -29,5 +30,9 @@ public class Tache {
 
     @Column(name = "priorite")
     private int priorite;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    private User user ;
 
 }

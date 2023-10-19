@@ -1,42 +1,47 @@
 package com.resourciumoptima.resourcium_optima.models.entities;
 
+import com.resourciumoptima.resourcium_optima.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Data
+@Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
-    @Column(name = "nom")
-    private String nom;
+    private long id;
 
-    @Column(name = "prenom")
-    private String prenom;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "email")
-    private String nomUtilisateur;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "motdepasse")
-    private String motdepasse;
-
-    @Column(name = "poste")
-    private String poste;
+    @Column(name = "role")
+    private Role role ;
 
     @Column(name = "dateEmbauche")
     @Temporal(TemporalType.DATE)
     private Date dateEmbauche;
 
+    @OneToMany(mappedBy = "user")
+    private List<Tache> taches ;
+
+    @OneToMany(mappedBy = "user")
+    private List<Reservation> reservation ;
 
 }
