@@ -1,4 +1,4 @@
-package com.resourciumoptima.resourcium_optima.models.enums;
+package com.resourciumoptima.resourcium_optima.enums;
 
 public class Status {
 }
