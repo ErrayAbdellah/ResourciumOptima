@@ -9,27 +9,42 @@
 <html>
 <head>
     <title>Title</title>
+  <link rel="stylesheet" href="styleLogins.css">
 </head>
 <body>
-  <h2>Sign Up</h2>
-  <form action="add.u" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br>
-
-    <label for="last-name">Last name:</label>
-    <input type="text" id="last-name" name="lastName" required><br>
-
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required><br>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br>
-
-    <label for="confirm_password">Confirm Password:</label>
-    <input type="password" id="confirm_password" name="confirm_password" required><br>
-
-    <input type="submit" value="Sign Up">
-  </form>
-  <a href="signIn.jsp">Sing In</a>
+  <div class="wrapper">
+    <div class="logo">
+      <img src="profile.jpg" alt="">
+    </div>
+    <div class="text-center mt-4 name">
+      User
+    </div>
+    <form class="p-3 mt-3" action="add.u" method="post">
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input type="text" name="name" id="userName" placeholder="Name">
+      </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input type="text" name="lastName" placeholder="lastName">
+      </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input type="email" name="email" placeholder="Email">
+      </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input type="password" name="password" placeholder="Password">
+      </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="fas fa-key"></span>
+        <input type="password" name="passwordConfirm" id="pwd" placeholder="Confirm Password">
+      </div>
+      <button class="btn mt-3">Login</button>
+    </form>
+    <div class="text-center fs-6">
+      <a href="#">Forget password?</a> or <a href="signIn.jsp">Sign up</a>
+    </div>
+  </div>
 </body>
 </html>

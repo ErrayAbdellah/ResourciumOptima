@@ -2,6 +2,7 @@ package com.resourciumoptima.resourcium_optima.models.entities;
 
 import com.resourciumoptima.resourcium_optima.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.util.Date;
@@ -25,14 +26,15 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Email
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "role")
-    private Role role ;
+    @Column(name = "role", columnDefinition = "VARCHAR(255) DEFAULT 'EMPLOYER'")
+    private String role ;
 
     @Column(name = "dateEmbauche")
     @Temporal(TemporalType.DATE)

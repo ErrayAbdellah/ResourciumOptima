@@ -2,6 +2,7 @@ package com.resourciumoptima.resourcium_optima.models.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Data
 public class Tache {
 
     @Id
@@ -25,7 +27,7 @@ public class Tache {
     @Column(name = "start_date")
     private Date startDate;
 
-    @Column(name = "limite")
+    @Column(name = "limit_edate")
     private Date dateLimite;
 
     @Column(name = "priorite")
