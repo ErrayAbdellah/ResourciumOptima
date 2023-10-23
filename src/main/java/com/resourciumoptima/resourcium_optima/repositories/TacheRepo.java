@@ -9,4 +9,8 @@ public interface TacheRepo {
     boolean save(Tache tache);
 
     List<Tache> finAll();
+
+    Tache findById(int id);
+
+    boolean update(Tache tache);
 }

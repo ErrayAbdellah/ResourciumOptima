@@ -9,4 +9,8 @@ public interface ITacheService {
     void save(Tache tache);
 
     List<Tache> findAll();
+
+    Tache findById(int id);
+
+    void update(Tache tache);
 }

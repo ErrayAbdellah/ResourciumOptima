@@ -24,4 +24,15 @@ public class TacheSeviceImpl implements ITacheService {
     public List<Tache> findAll() {
        return tacheRepo.finAll();
     }
+
+    @Override
+    public Tache findById(int id) {
+        Tache tache = tacheRepo.findById(id);
+        return tache;
+    }
+
+    @Override
+    public void update(Tache tache) {
+        tacheRepo.update(tache);
+    }
 }
