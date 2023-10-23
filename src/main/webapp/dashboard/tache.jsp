@@ -1,4 +1,5 @@
 <%@ page import="com.resourciumoptima.resourcium_optima.models.entities.Tache" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: ERRAY
@@ -23,8 +24,7 @@
             <button data-modal-target="staticModal" data-modal-toggle="staticModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                 New Task
             </button>
-            <h1>${taches}</h1>
-            <h1>hello</h1>
+            <h1></h1>
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <h2 class="text-2xl font-bold mb-4">Example Datatable</h2>
                 <table id="example" class="table-auto w-full">
@@ -39,15 +39,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${tacheList}" var="tache">
+
+<%--                    <c:forEach items="${tacheList}" var="tache">--%>
+                        <%
+                            List<Tache> taches = (List<Tache>) request.getAttribute("tacheList");
+                            for (Tache tache:taches) { %>
                         <tr>
-                            <td class="border px-4 py-2">${tache.description}</td>
-                            <td class="border px-4 py-2">${tache.startDate}</td>
-                            <td class="border px-4 py-2">${tache.endDate}</td>
-                            <td class="border px-4 py-2">${tache.priorite}</td>
-                            <td class="border px-4 py-2">${tache.user}</td>
+                            <td class="border px-4 py-2"><%=tache.getDescription()%></td>
+                            <td class="border px-4 py-2"><%=tache.getStartDate()%></td>
+                            <td class="border px-4 py-2"><%=tache.getDateLimite()%></td>
+                            <td class="border px-4 py-2"><%=tache.getPriorite()%></td>
+                            <td class="border px-4 py-2"><%=(tache.getUser()!=null)?tache.getUser() :"Abdellah Erray"%></td>
                             <td class="border px-4 py-2 flex">
-                                <form action="update-tache">
+                                <form action="update-tache.t" method="get">
+                                    <input type="hidden" name="id_tache" value="<%=tache.getId()%>">
                                     <input type="submit" value="Update" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" />
                                 </form>
                                 <form action="delete-tache">
@@ -55,28 +60,17 @@
                                 </form>
                             </td>
                         </tr>
-                    </c:forEach>
-<%--                    <td class="border px-4 py-2">Tiger Nixon</td>--%>
-<%--                    <td class="border px-4 py-2">2022/10/02</td>--%>
-<%--                    <td class="border px-4 py-2">2023/11/03</td>--%>
-<%--                    <td class="border px-4 py-2">61</td>--%>
-<%--                    <td class="border px-4 py-2">abdellah erray</td>--%>
-<%--                    <td class="border px-4 py-2 flex">--%>
-<%--                        <form action="">--%>
-<%--                            <input  type="submit" value="Update" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"/>--%>
-<%--                        </form>--%>
-<%--                        <form action="">--%>
-<%--                            <input  type="submit" value="Delete" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"/>--%>
-<%--                        </form>--%>
-
-
-                        <!-- Add more rows as needed -->
+                    <% }%>
                     </tbody>
                 </table>
             </div>
 
+    </div>
+    </div>
+    </div>
 
-            <!-- Main modal -->
+    </div>
+            <!-- modal save task -->
             <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <!-- Modal content -->
@@ -118,9 +112,9 @@
                                     </div>
                                     <input datepicker datepicker-buttons name="dateEnd" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 " placeholder="Select end date ">
                                 </div>
-                                <div class="mb-6">
-                                    <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priorite</label>
-                                    <input type="number" name="priorite" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required>
+                                <div class="mb-6 max-w-sm">
+                                    <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900">Priorite</label>
+                                    <input type="number" name="priorite" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required>
                                 </div>
                             </div>
 
@@ -136,17 +130,6 @@
                     </div>
                 </div>
             </div>
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
-
-            <script>
-                $(document).ready(function() {
-                    $('#example').DataTable({
-                        // Add any customization options here
-                    });
-                });
-            </script>
         </div>
     </div>
         </div>
@@ -155,22 +138,15 @@
 
 
 
-<%--    <script>--%>
-<%--        $(document).ready(function() {--%>
-<%--            $('#example').DataTable({--%>
-<%--                // Add any customization options here--%>
-<%--            });--%>
-<%--        });--%>
-<%--    </script><script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>--%>
-<%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>--%>
-<%--    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>--%>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 
-<%--    <script>--%>
-<%--        $(document).ready(function() {--%>
-<%--            $('#example').DataTable({--%>
-<%--                // Add any customization options here--%>
-<%--            });--%>
-<%--        });--%>
-<%--    </script>--%>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({});
+        });
+    </script>
 </body>
 </html>

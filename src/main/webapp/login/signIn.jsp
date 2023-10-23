@@ -17,7 +17,7 @@
     <img src="profile.jpg" alt="">
   </div>
   <div class="text-center mt-4 name">
-    Twitter
+    Sign in
   </div>
   <form class="p-3 mt-3" action="signin.u" method="post">
     <div class="form-field d-flex align-items-center">
