@@ -1,7 +1,6 @@
 package com.resourciumoptima.resourcium_optima.repositories.impl;
 
 import com.resourciumoptima.resourcium_optima.models.entities.Tache;
-import com.resourciumoptima.resourcium_optima.models.entities.User;
 import com.resourciumoptima.resourcium_optima.repositories.TacheRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -40,6 +39,8 @@ public class TacheRepoImpl implements TacheRepo {
             return tache ;
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            entityManager.close();
         }
         return null;
     }
@@ -61,6 +62,30 @@ public class TacheRepoImpl implements TacheRepo {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            entityManager.close();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id_delete) {
+        try {
+            entityManager.getTransaction().begin();
+            Tache tacheToDelete = entityManager.find(Tache.class, id_delete);
+
+            if (tacheToDelete != null) {
+                entityManager.remove(tacheToDelete);
+                entityManager.getTransaction().commit();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }finally {
+            entityManager.close();
         }
         return false;
     }

@@ -41,8 +41,9 @@ public class TacheController extends HttpServlet {
                 request.setAttribute("tache", tache);
                 request.getRequestDispatcher("/dashboard/tacheUpdate.jsp").forward(request,response);
                 break;
-            case "/dashboard/update.u":
-
+            case "/dashboard/delete-tache.t":
+                int id_delete = Integer.parseInt(request.getParameter("id_tache"));
+                    tacheService.delete(id_delete);
                 break;
         }
     }
@@ -83,9 +84,9 @@ public class TacheController extends HttpServlet {
                 }
                 tacheService.update(tache);
                 break;
-            case "/dashboard/delete.u":
-                System.out.println("Delete");
-                break;
+//            case "/dashboard/delete-tache.t":
+//                System.out.println("Delete");
+//                break;
         }
     }
 }

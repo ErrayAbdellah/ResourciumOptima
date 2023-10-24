@@ -13,4 +13,6 @@ public interface TacheRepo {
     Tache findById(int id);
 
     boolean update(Tache tache);
+
+    boolean delete(int id_delete);
 }

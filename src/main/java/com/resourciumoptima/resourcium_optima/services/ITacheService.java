@@ -13,4 +13,6 @@ public interface ITacheService {
     Tache findById(int id);
 
     void update(Tache tache);
+
+    void delete(int id_delete);
 }

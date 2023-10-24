@@ -35,4 +35,9 @@ public class TacheSeviceImpl implements ITacheService {
     public void update(Tache tache) {
         tacheRepo.update(tache);
     }
+
+    @Override
+    public void delete(int id_delete) {
+        tacheRepo.delete(id_delete);
+    }
 }
