@@ -3,15 +3,18 @@ package com.resourciumoptima.resourcium_optima.models.entities;
 import com.resourciumoptima.resourcium_optima.enums.Etat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Data
+@Table(name = "equipment")
 public class Equipement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +37,7 @@ public class Equipement {
     @Column(name = "etat")
     private Etat etat;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private Reservation reservation;
+    @OneToMany(mappedBy = "equipement")
+    private List<Reservation> reservations;
+
 }

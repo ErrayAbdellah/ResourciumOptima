@@ -14,13 +14,11 @@ public class UserController extends HttpServlet {
     private final IUserService userService ;
 
     public UserController(){
-
         this.userService = new UserServiceImpl();
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         User user = new User();
         String path = request.getServletPath();
         System.out.println(path);
